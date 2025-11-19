@@ -1,84 +1,99 @@
-import { motion } from "framer-motion";
-import { CheckCircle2, Zap, Shield, Award } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Check, Zap, Shield, Award, Cpu, Microscope } from "lucide-react";
 
 const specs = [
-  { label: "Технология", value: "Фототермическая биомодуляция" },
-  { label: "Длина волны", value: "Специальный спектр (Запатентовано)" },
-  { label: "Режимы работы", value: "Автоматический, Ручной" },
-  { label: "Питание", value: "220В / 50Гц" },
-  { label: "Гарантия", value: "2 года" },
-  { label: "Сертификация", value: "Медицинское изделие РФ" },
+  { label: "Длина волны", value: "850 ± 10 нм (IR)" },
+  { label: "Мощность излучения", value: "До 200 мВт/см²" },
+  { label: "Режимы экспозиции", value: "Непрерывный, Импульсный" },
+  { label: "Температурный контроль", value: "Активный (PID-регулятор)" },
+  { label: "Интерфейс", value: "Сенсорный LCD 7\"" },
+  { label: "Класс безопасности", value: "IIa (Медицинское изделие)" },
 ];
 
 const benefits = [
-  "Ускорение реабилитации в 2 раза",
-  "Безболезненность процедур",
-  "Совместимость с любыми пробирками",
-  "Простой и интуитивный интерфейс",
-  "Компактный дизайн",
-  "Отсутствие расходных материалов",
+  { text: "Сокращение реабилитации на 50%", icon: Zap },
+  { text: "Полная биосовместимость", icon: Shield },
+  { text: "Стерильная закрытая система", icon: Microscope },
+  { text: "Интуитивное управление", icon: Cpu },
+  { text: "Без расходных материалов", icon: Award },
+  { text: "Компактный форм-фактор", icon: Check },
 ];
 
 export default function TechSpecs() {
+  const containerRef = useRef(null);
+  
   return (
-    <section id="specs" className="py-24 bg-white relative">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section ref={containerRef} id="specs" className="py-32 bg-[#050a0c] relative">
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 w-full h-full grid-pattern opacity-20 pointer-events-none" />
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-20">
+          {/* Technical Specs Table */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-10"
           >
-            <div className="space-y-4">
-              <h2 className="text-4xl font-heading font-bold text-black">
-                Технические <br />характеристики
+            <div>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
+                Спецификации
               </h2>
-              <div className="w-20 h-1 bg-primary" />
+              <p className="text-accent font-mono text-sm uppercase tracking-widest">
+                Technical Data Sheet
+              </p>
             </div>
 
-            <div className="divide-y divide-gray-100 border-t border-b border-gray-100">
+            <div className="bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm overflow-hidden">
               {specs.map((spec, index) => (
-                <motion.div 
+                <div 
                   key={index} 
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="flex justify-between py-4 hover:bg-gray-50 transition-colors px-2"
+                  className={`flex justify-between p-5 hover:bg-white/5 transition-colors ${
+                    index !== specs.length - 1 ? "border-b border-white/10" : ""
+                  }`}
                 >
-                  <span className="font-medium text-gray-500">{spec.label}</span>
-                  <span className="font-bold text-primary">{spec.value}</span>
-                </motion.div>
+                  <span className="font-mono text-sm text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                    <div className="w-1 h-1 bg-primary rounded-full" />
+                    {spec.label}
+                  </span>
+                  <span className="font-bold text-white text-right">{spec.value}</span>
+                </div>
               ))}
             </div>
           </motion.div>
 
+          {/* Benefits List */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-[#087D95] text-white p-10 md:p-12 relative overflow-hidden shadow-2xl"
+            className="space-y-10"
           >
-            {/* Background Gradient Decoration */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4dbdc6] rounded-full blur-3xl opacity-50" />
-            
-            <h3 className="text-3xl font-heading font-bold mb-8 relative z-10">Преимущества</h3>
-            
-            <div className="grid gap-6 relative z-10">
+             <div>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
+                Преимущества для клиники
+              </h2>
+              <p className="text-accent font-mono text-sm uppercase tracking-widest">
+                Clinical Benefits
+              </p>
+            </div>
+
+            <div className="grid gap-4">
               {benefits.map((benefit, index) => (
                 <motion.div 
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-4"
+                  className="group flex items-center gap-5 p-4 rounded-xl border border-transparent hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
                 >
-                  <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="h-5 w-5 text-white" />
+                  <div className="h-12 w-12 rounded-lg bg-gradient-to-br from-primary/20 to-transparent border border-primary/20 flex items-center justify-center shrink-0 group-hover:border-accent group-hover:shadow-[0_0_15px_rgba(77,189,198,0.2)] transition-all">
+                    <benefit.icon className="h-6 w-6 text-white group-hover:text-accent" />
                   </div>
-                  <span className="text-lg font-medium text-white/90">{benefit}</span>
+                  <span className="text-lg font-medium text-gray-200 group-hover:text-white">{benefit.text}</span>
                 </motion.div>
               ))}
             </div>

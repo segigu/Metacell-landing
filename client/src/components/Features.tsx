@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import techIcon from "@assets/generated_images/Abstract_tech_icon_54528a53.png";
 import regenIcon from "@assets/generated_images/Cell_regeneration_icon_fc406b27.png";
@@ -7,65 +8,97 @@ import kitIcon from "@assets/generated_images/Medical_kit_icon_aa0debc6.png";
 const features = [
   {
     title: "Фототермическая биомодуляция",
-    description: "Инновационный метод воздействия на биологические ткани для ускорения процессов регенерации.",
+    description: "Запатентованная технология воздействия на ткани для максимальной активации факторов роста.",
     icon: techIcon,
   },
   {
     title: "Аутологичные продукты",
-    description: "Использование собственных клеток пациента (PRP, АТФ, Экзосомы) для полной биосовместимости.",
+    description: "Безопасное использование собственных ресурсов организма: PRP, АТФ, Экзосомы.",
     icon: regenIcon,
   },
   {
     title: "MCT Kit & Unit",
-    description: "Комплексное решение: специализированные пробирки и аппаратный модуль.",
+    description: "Закрытая система подготовки материала. Полная стерильность и автоматизация процесса.",
     icon: kitIcon,
   },
 ];
 
 export default function Features() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Parallax effect for the flying particles
+  const yParticles = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const opacityParticles = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
   return (
-    <section id="features" className="py-24 bg-[#f8f9fa] relative overflow-hidden">
-      {/* Brand Pattern Background */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]" 
-           style={{ backgroundImage: 'radial-gradient(#087D95 1px, transparent 1px)', backgroundSize: '30px 30px' }} 
-      />
+    <section ref={containerRef} id="features" className="py-32 relative overflow-hidden">
+      {/* Flying Particles Background Animation */}
+      <motion.div 
+        style={{ y: yParticles, opacity: opacityParticles }}
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      >
+         {Array.from({ length: 20 }).map((_, i) => (
+           <div 
+             key={i}
+             className="absolute w-1 h-1 bg-accent rounded-full blur-[1px]"
+             style={{
+               top: `${Math.random() * 100}%`,
+               left: `${Math.random() * 100}%`,
+               opacity: Math.random() * 0.5 + 0.2,
+             }}
+           />
+         ))}
+         <div className="absolute top-1/4 left-0 w-full h-[500px] bg-gradient-to-r from-primary/10 via-transparent to-primary/10 blur-3xl transform -skew-y-12" />
+      </motion.div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-4xl font-heading font-bold text-black">Технология будущего</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#087D95] to-[#4dbdc6] mx-auto" />
-          <p className="text-lg text-gray-600">
-            Сочетание передовых научных разработок и клинически доказанной эффективности.
-          </p>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-white/10 pb-8">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+              Технология <span className="text-accent">нового поколения</span>
+            </h2>
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Система MCT объединяет передовую физику и биологию для достижения прогнозируемых 
+              клинических результатов в эстетической медицине и травматологии.
+            </p>
+          </div>
+          <div className="hidden md:block">
+             <div className="text-right">
+               <div className="text-4xl font-mono font-bold text-white">01</div>
+               <div className="text-sm text-accent uppercase tracking-widest">System Overview</div>
+             </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-white group rounded-none relative overflow-hidden">
-                {/* Top Border Line */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#087D95] to-[#4dbdc6] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <Card className="h-full bg-black/40 backdrop-blur-sm border border-white/10 hover:border-accent/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(8,125,149,0.15)] group overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <CardHeader className="pb-4 pt-8">
-                  <div className="w-20 h-20 mx-auto mb-6 relative">
-                    <div className="absolute inset-0 bg-[#bde2ee]/30 rounded-full transform group-hover:scale-125 transition-transform duration-500" />
+                <CardHeader className="pb-4 relative z-10">
+                  <div className="w-20 h-20 mb-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 p-4 group-hover:scale-110 transition-transform duration-500">
                     <img 
                       src={feature.icon} 
                       alt={feature.title} 
-                      className="w-full h-full object-contain relative z-10"
+                      className="w-full h-full object-contain filter brightness-0 invert drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
                     />
                   </div>
-                  <CardTitle className="text-xl text-center font-bold text-gray-900 font-heading">
+                  <CardTitle className="text-xl font-bold text-white group-hover:text-accent transition-colors">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-center text-gray-600 leading-relaxed px-6 pb-8">
+                <CardContent className="text-gray-400 leading-relaxed relative z-10">
                   {feature.description}
                 </CardContent>
               </Card>

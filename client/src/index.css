@@ -32,7 +32,7 @@
   --color-chart-5: hsl(var(--chart-5));
   
   --font-sans: "Open Sans", sans-serif;
-  --font-heading: "Raleway", sans-serif; /* Using Raleway as substitute for Cygre */
+  --font-heading: "Raleway", sans-serif;
   
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -40,77 +40,57 @@
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite alternate;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 10px -5px var(--color-primary); }
+    to { box-shadow: 0 0 30px 5px var(--color-primary); }
+  }
 }
 
 :root {
-  /* Brand Colors from Manual:
-     Main Brand Color (Primary): #087D95 (Teal-ish) -> 189 90% 31%
-     Secondary Gradient Color (Accent): #4dbdc6 -> 184 50% 54%
-     Light Texture (Background): #ebebeb -> 0 0% 92%
-     Light Blue Texture: #bde2ee -> 195 56% 84%
-     Black: #000000
-     White: #FFFFFF
+  /* Dark Medical Theme
+     Background: Deep Black/Dark Teal Mix
+     Primary: #087D95 (Teal) -> 189 90% 31%
+     Accent: #4dbdc6 (Cyan) -> 184 50% 54%
   */
 
-  --background: 0 0% 100%;
-  --foreground: 189 90% 15%; /* Darker version of primary for text */
+  --background: 200 50% 3%; /* Very deep dark blue/black */
+  --foreground: 195 20% 95%;
 
-  --card: 0 0% 100%;
-  --card-foreground: 189 90% 15%;
+  --card: 200 50% 5%;
+  --card-foreground: 195 20% 95%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 189 90% 15%;
-
-  --primary: 189 90% 31%; /* #087D95 */
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 195 56% 94%; /* Lighter version of #bde2ee */
-  --secondary-foreground: 189 90% 31%;
-
-  --muted: 0 0% 96%;
-  --muted-foreground: 189 20% 50%;
-
-  --accent: 184 50% 54%; /* #4dbdc6 */
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 195 30% 90%;
-  --input: 195 30% 90%;
-  --ring: 189 90% 31%;
-
-  --radius: 0.5rem; /* Back to slightly more square as per manual examples */
-}
-
-.dark {
-  --background: 189 50% 5%;
-  --foreground: 195 30% 95%;
-
-  --card: 189 50% 5%;
-  --card-foreground: 195 30% 95%;
-
-  --popover: 189 50% 5%;
-  --popover-foreground: 195 30% 95%;
+  --popover: 200 50% 5%;
+  --popover-foreground: 195 20% 95%;
 
   --primary: 189 90% 31%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 189 30% 15%;
-  --secondary-foreground: 0 0% 100%;
+  --secondary: 189 30% 10%;
+  --secondary-foreground: 184 50% 54%;
 
-  --muted: 189 30% 15%;
-  --muted-foreground: 195 20% 65%;
+  --muted: 200 30% 15%;
+  --muted-foreground: 195 10% 60%;
 
   --accent: 184 50% 54%;
-  --accent-foreground: 0 0% 100%;
+  --accent-foreground: 200 50% 3%;
 
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
   --border: 189 30% 15%;
   --input: 189 30% 15%;
-  --ring: 184 50% 54%;
+  --ring: 189 90% 31%;
+
+  --radius: 0.75rem; /* Balanced rounding */
 }
 
 @layer base {
@@ -119,7 +99,11 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    background-image: 
+      radial-gradient(circle at 50% 0%, hsl(189 90% 31% / 0.15), transparent 40%),
+      radial-gradient(circle at 0% 50%, hsl(184 50% 54% / 0.05), transparent 30%),
+      radial-gradient(circle at 100% 80%, hsl(189 90% 31% / 0.1), transparent 40%);
+    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight;
@@ -128,18 +112,16 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/90 backdrop-blur-md border border-white/50 shadow-lg;
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
+  
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#087D95] to-[#4dbdc6];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#4dbdc6] to-white;
   }
   
-  /* Brand Gradients */
-  .bg-brand-gradient {
-    @apply bg-gradient-to-br from-[#087D95] to-[#4dbdc6];
-  }
-  
-  .bg-brand-light {
-    @apply bg-[#bde2ee]/20;
+  .grid-pattern {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

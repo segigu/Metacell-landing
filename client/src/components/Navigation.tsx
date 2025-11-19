@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,22 +16,27 @@ export default function Navigation() {
   }, []);
 
   const navLinks = [
-    { name: "О системе", href: "#hero" },
+    { name: "Система", href: "#hero" },
     { name: "Технология", href: "#features" },
-    { name: "Преимущества", href: "#specs" },
+    { name: "Спецификации", href: "#specs" },
     { name: "Контакты", href: "#contact" },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+        isScrolled 
+          ? "bg-background/80 backdrop-blur-md border-white/10 py-4" 
+          : "bg-transparent border-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-2xl font-heading font-bold text-[#087D95] tracking-tighter">
-            MCT
+          <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center text-white font-bold text-xl">
+            M
+          </div>
+          <span className="text-2xl font-heading font-bold text-white tracking-tight">
+            MCT<span className="text-primary font-light">System</span>
           </span>
         </div>
 
@@ -42,20 +46,20 @@ export default function Navigation() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-bold uppercase tracking-wide text-gray-700 hover:text-[#087D95] transition-colors relative group"
+              className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#087D95] transition-all group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all group-hover:w-full box-shadow-[0_0_10px_var(--color-accent)]" />
             </a>
           ))}
-          <Button className="rounded-none bg-[#087D95] hover:bg-[#066a7e] px-6 font-bold">
-            Связаться
+          <Button className="rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all hover:border-accent hover:shadow-[0_0_15px_rgba(77,189,198,0.3)]">
+            Заказать демо
           </Button>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-black"
+          className="md:hidden p-2 text-white"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X /> : <Menu />}
@@ -69,7 +73,7 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t"
+            className="md:hidden bg-background border-t border-white/10"
           >
             <nav className="flex flex-col p-4 gap-4">
               {navLinks.map((link) => (
@@ -77,12 +81,12 @@ export default function Navigation() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg font-bold text-gray-800 uppercase tracking-wide"
+                  className="text-lg font-medium text-gray-200"
                 >
                   {link.name}
                 </a>
               ))}
-              <Button className="w-full rounded-none bg-[#087D95]">Связаться</Button>
+              <Button className="w-full bg-primary hover:bg-primary/80">Заказать демо</Button>
             </nav>
           </motion.div>
         )}
