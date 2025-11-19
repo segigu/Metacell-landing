@@ -37,49 +37,62 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
+    <section id="contact" className="py-32 bg-white relative overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-white pointer-events-none" />
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12 space-y-4">
-            <h2 className="text-4xl font-heading font-bold text-foreground">Свяжитесь с нами</h2>
-            <p className="text-lg text-muted-foreground">
+        <div className="max-w-4xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16 space-y-6"
+          >
+            <h2 className="text-5xl font-heading font-bold text-foreground tracking-tight">Свяжитесь с нами</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
               Оставьте заявку, и наши специалисты проконсультируют вас по всем вопросам
               приобретения и использования системы MCT.
             </p>
-          </div>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-secondary/30 p-8 md:p-10 rounded-3xl border border-border shadow-lg"
+            transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+            className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border border-gray-100 relative overflow-hidden"
           >
+            {/* Decorative blobs inside card */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-100/50 rounded-full blur-3xl" />
+
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 relative z-10">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Ваше имя</FormLabel>
+                      <FormLabel className="text-base pl-2">Ваше имя</FormLabel>
                       <FormControl>
-                        <Input placeholder="Иван Петров" className="bg-white h-12 rounded-xl border-gray-200 focus:border-primary" {...field} />
+                        <Input placeholder="Иван Петров" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="pl-2" />
                     </FormItem>
                   )}
                 />
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-8">
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel className="text-base pl-2">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="ivan@example.com" className="bg-white h-12 rounded-xl border-gray-200 focus:border-primary" {...field} />
+                          <Input placeholder="ivan@example.com" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="pl-2" />
                       </FormItem>
                     )}
                   />
@@ -88,11 +101,11 @@ export default function Contact() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Телефон</FormLabel>
+                        <FormLabel className="text-base pl-2">Телефон</FormLabel>
                         <FormControl>
-                          <Input placeholder="+7 (999) 000-00-00" className="bg-white h-12 rounded-xl border-gray-200 focus:border-primary" {...field} />
+                          <Input placeholder="+7 (999) 000-00-00" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="pl-2" />
                       </FormItem>
                     )}
                   />
@@ -102,27 +115,23 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Сообщение (необязательно)</FormLabel>
+                      <FormLabel className="text-base pl-2">Сообщение (необязательно)</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Меня интересует стоимость..." className="bg-white min-h-[120px] rounded-xl border-gray-200 focus:border-primary resize-none" {...field} />
+                        <Textarea placeholder="Меня интересует стоимость..." className="bg-gray-50/50 min-h-[150px] rounded-3xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all resize-none text-lg p-6" {...field} />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="pl-2" />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="lg" className="w-full rounded-full h-14 text-lg">
-                  Отправить заявку
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button type="submit" size="lg" className="w-full rounded-full h-16 text-xl font-semibold shadow-lg shadow-primary/20">
+                    Отправить заявку
+                  </Button>
+                </motion.div>
               </form>
             </Form>
           </motion.div>
         </div>
-      </div>
-      
-      {/* Decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-64 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
       </div>
     </section>
   );
