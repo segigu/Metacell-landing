@@ -3,21 +3,21 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Check, Zap, Shield, Award, Cpu, Microscope } from "lucide-react";
 
 const specs = [
-  { label: "Длина волны", value: "850 ± 10 нм (IR)" },
-  { label: "Мощность излучения", value: "До 200 мВт/см²" },
-  { label: "Режимы экспозиции", value: "Непрерывный, Импульсный" },
-  { label: "Температурный контроль", value: "Активный (PID-регулятор)" },
-  { label: "Интерфейс", value: "Сенсорный LCD 7\"" },
-  { label: "Класс безопасности", value: "IIa (Медицинское изделие)" },
+  { label: "623.5 нм (Красный)", value: "12 J/min" },
+  { label: "530 нм (Зеленый)", value: "10 J/min" },
+  { label: "467 нм (Синий)", value: "10 J/min" },
+  { label: "591 нм (Желтый)", value: "7.5 J/min" },
+  { label: "850 нм (ИК)", value: "10 J/min" },
+  { label: "Охлаждение / Нагрев", value: "4°С / 42°С" },
 ];
 
 const benefits = [
-  { text: "Сокращение реабилитации на 50%", icon: Zap },
-  { text: "Полная биосовместимость", icon: Shield },
-  { text: "Стерильная закрытая система", icon: Microscope },
-  { text: "Интуитивное управление", icon: Cpu },
-  { text: "Без расходных материалов", icon: Award },
-  { text: "Компактный форм-фактор", icon: Check },
+  { text: "Увеличение регенерации в 13 раз", icon: Zap },
+  { text: "Высокая биосовместимость", icon: Shield },
+  { text: "Низкая иммуногенность", icon: Microscope },
+  { text: "Работа с любым аутологичным материалом", icon: Cpu },
+  { text: "Простота использования (предустановки)", icon: Award },
+  { text: "Закрытая стерильная система MCT Kit", icon: Check },
 ];
 
 export default function TechSpecs() {
@@ -42,7 +42,7 @@ export default function TechSpecs() {
                 Спецификации
               </h2>
               <p className="text-accent font-mono text-sm uppercase tracking-widest">
-                Technical Data Sheet
+                Energy & Wavelengths
               </p>
             </div>
 
@@ -62,6 +62,10 @@ export default function TechSpecs() {
                 </div>
               ))}
             </div>
+            
+            <p className="text-sm text-gray-500 italic">
+              * MCT Kit изготовлен из полимера медицинского назначения для оптимального рассеивания.
+            </p>
           </motion.div>
 
           {/* Benefits List */}
@@ -73,10 +77,10 @@ export default function TechSpecs() {
           >
              <div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
-                Преимущества для клиники
+                Клинические преимущества
               </h2>
               <p className="text-accent font-mono text-sm uppercase tracking-widest">
-                Clinical Benefits
+                Why Exosomes?
               </p>
             </div>
 
@@ -96,6 +100,12 @@ export default function TechSpecs() {
                   <span className="text-lg font-medium text-gray-200 group-hover:text-white">{benefit.text}</span>
                 </motion.div>
               ))}
+            </div>
+            
+            <div className="p-6 bg-accent/10 border border-accent/20 rounded-xl">
+              <p className="text-gray-300 text-sm">
+                "Фототермическая обработка тромбоцитов стимулирует выработку и высвобождение экзосом, увеличивая регенеративную способность аутологичного материала более чем в 13 раз."
+              </p>
             </div>
           </motion.div>
         </div>

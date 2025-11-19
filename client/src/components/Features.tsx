@@ -7,18 +7,18 @@ import kitIcon from "@assets/generated_images/Medical_kit_icon_aa0debc6.png";
 
 const features = [
   {
-    title: "Фототермическая биомодуляция",
-    description: "Запатентованная технология воздействия на ткани для максимальной активации факторов роста.",
+    title: "Научная база",
+    description: "Основано на открытиях механизмов везикулярного транспорта и микроРНК, удостоенных Нобелевских премий 2013 и 2024 годов.",
     icon: techIcon,
   },
   {
-    title: "Аутологичные продукты",
-    description: "Безопасное использование собственных ресурсов организма: PRP, АТФ, Экзосомы.",
+    title: "Экзосомы",
+    description: "Внеклеточные везикулы (40-250 нм), переносящие белки, липиды и РНК для межклеточной коммуникации и регенерации.",
     icon: regenIcon,
   },
   {
     title: "MCT Kit & Unit",
-    description: "Закрытая система подготовки материала. Полная стерильность и автоматизация процесса.",
+    description: "Уникальная система с фототермической активацией для обработки 10 мл любого аутологичного материала.",
     icon: kitIcon,
   },
 ];
@@ -41,7 +41,7 @@ export default function Features() {
         style={{ y: yParticles, opacity: opacityParticles }}
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
       >
-         {Array.from({ length: 20 }).map((_, i) => (
+         {Array.from({ length: 30 }).map((_, i) => (
            <div 
              key={i}
              className="absolute w-1 h-1 bg-accent rounded-full blur-[1px]"
@@ -59,17 +59,17 @@ export default function Features() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-white/10 pb-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
-              Технология <span className="text-accent">нового поколения</span>
+              От науки к <span className="text-accent">клинической практике</span>
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed">
-              Система MCT объединяет передовую физику и биологию для достижения прогнозируемых 
-              клинических результатов в эстетической медицине и травматологии.
+              Экзосомы играют ключевую роль в заживлении ран, иммуномодуляции и метаболическом перепрограммировании.
+              MCT System делает эту технологию доступной для врача.
             </p>
           </div>
           <div className="hidden md:block">
              <div className="text-right">
                <div className="text-4xl font-mono font-bold text-white">01</div>
-               <div className="text-sm text-accent uppercase tracking-widest">System Overview</div>
+               <div className="text-sm text-accent uppercase tracking-widest">Science Core</div>
              </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Activity } from "lucide-react";
+import { ChevronRight, Activity, Microscope } from "lucide-react";
 import heroImage from "@assets/generated_images/Hero_image_of_a_sleek_medical_device_2ddda277.png";
 
 export default function Hero() {
@@ -38,25 +38,25 @@ export default function Hero() {
             className="space-y-8"
           >
             <div className="flex items-center gap-3 text-accent font-medium tracking-wider uppercase text-sm">
-              <Activity className="h-4 w-4" />
-              <span>Медицинская сертификация РФ</span>
+              <Microscope className="h-4 w-4" />
+              <span>Нобелевская премия 2013 & 2024</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-heading font-bold leading-[1.1] text-white tracking-tight">
-              Интеллектуальная <br />
+            <h1 className="text-4xl md:text-6xl font-heading font-bold leading-[1.1] text-white tracking-tight">
+              Аутологичные экзосомы: <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-white animate-pulse">
-                биомодуляция
+                Новый шаг в регенерации
               </span>
             </h1>
             
             <p className="text-xl text-gray-400 leading-relaxed max-w-lg border-l-2 border-white/10 pl-6">
-              MCT System — профессиональное решение для регенеративной терапии. 
-              Клинически доказанная эффективность для врачей-экспертов.
+              MCT System стимулирует выработку экзосом методом фототермической биомодуляции. 
+              Увеличение регенеративной способности в 13 раз.
             </p>
             
             <div className="flex flex-wrap gap-5 pt-4">
               <Button size="lg" className="rounded-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-[0_0_20px_rgba(8,125,149,0.4)] border-none h-14 px-8 text-lg">
-                Получить КП
+                Получить консультацию
               </Button>
               <Button variant="ghost" size="lg" className="rounded-lg text-gray-300 hover:text-white hover:bg-white/5 h-14 px-8 text-lg group">
                 О технологии <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -89,10 +89,10 @@ export default function Hero() {
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                  <span className="text-xs text-accent font-mono uppercase">Status: Active</span>
+                  <span className="text-xs text-accent font-mono uppercase">Exosome Boost</span>
                 </div>
-                <div className="text-2xl font-mono text-white font-bold">850 nm</div>
-                <div className="text-xs text-gray-500">Длина волны</div>
+                <div className="text-2xl font-mono text-white font-bold">13x</div>
+                <div className="text-xs text-gray-500">Регенеративный потенциал</div>
               </motion.div>
 
               <motion.div 
@@ -102,10 +102,10 @@ export default function Hero() {
               >
                  <div className="flex items-center gap-3 mb-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-xs text-green-500 font-mono uppercase">Ready</span>
+                  <span className="text-xs text-green-500 font-mono uppercase">Temp Control</span>
                 </div>
-                <div className="text-2xl font-mono text-white font-bold">37°C</div>
-                <div className="text-xs text-gray-500">Термоконтроль</div>
+                <div className="text-2xl font-mono text-white font-bold">4°C - 42°C</div>
+                <div className="text-xs text-gray-500">Диапазон температур</div>
               </motion.div>
             </motion.div>
           </div>
