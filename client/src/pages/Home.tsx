@@ -1,7 +1,14 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import TechSpecs from "@/components/TechSpecs";
+import MarketProblem from "@/components/MarketProblem";
+import Solution from "@/components/Solution";
+import Economy from "@/components/Economy";
+import HowItWorks from "@/components/HowItWorks";
+import Science from "@/components/Science";
+import Comparison from "@/components/Comparison";
+import Support from "@/components/Support";
+import Packages from "@/components/Packages";
+import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -11,8 +18,15 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <Features />
-        <TechSpecs />
+        <MarketProblem />
+        <Solution />
+        <Economy />
+        <HowItWorks />
+        <Science />
+        <Comparison />
+        <Support />
+        <Packages />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

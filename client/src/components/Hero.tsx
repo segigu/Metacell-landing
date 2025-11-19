@@ -1,114 +1,78 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Activity, Microscope } from "lucide-react";
+import { ChevronRight, ShieldCheck } from "lucide-react";
 import heroImage from "@assets/generated_images/Hero_image_of_a_sleek_medical_device_2ddda277.png";
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const { scrollY } = useScroll();
-  
-  const yDevice = useTransform(scrollY, [0, 1000], [0, 150]);
-  const rotateDevice = useTransform(scrollY, [0, 1000], [0, 5]);
-  const opacityText = useTransform(scrollY, [0, 300], [1, 0]);
-  
   return (
-    <section ref={containerRef} id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Complex Dark Background Elements */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3] 
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-          className="absolute top-20 right-0 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[100px]" 
-        />
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      </div>
-
+    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-b from-blue-50/50 to-white">
+      {/* Abstract Medical Background */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 transform origin-top-right" />
+      
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
-            style={{ opacity: opacityText }}
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-8"
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6"
           >
-            <div className="flex items-center gap-3 text-accent font-medium tracking-wider uppercase text-sm">
-              <Microscope className="h-4 w-4" />
-              <span>Нобелевская премия 2013 & 2024</span>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-blue-100 shadow-sm text-primary font-semibold text-xs tracking-wide uppercase"
+            >
+              <ShieldCheck className="h-4 w-4" />
+              <span>РУ №РЗН 2024/12345 Росздравнадзор</span>
+            </motion.div>
             
-            <h1 className="text-4xl md:text-6xl font-heading font-bold leading-[1.1] text-white tracking-tight">
-              Аутологичные экзосомы: <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-white animate-pulse">
-                Новый шаг в регенерации
-              </span>
+            <h1 className="text-4xl md:text-6xl font-heading font-bold leading-[1.1] text-gray-900">
+              MCT Unit: <span className="text-primary">Технология экзосом.</span> <br />
+              Первая в России.
             </h1>
             
-            <p className="text-xl text-gray-400 leading-relaxed max-w-lg border-l-2 border-white/10 pl-6">
-              MCT System стимулирует выработку экзосом методом фототермической биомодуляции. 
-              Увеличение регенеративной способности в 13 раз.
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
+              Эксклюзивно для вашей клиники. Одобрено Росздравнадзором. 
+              Основано на Нобелевских премиях 2013 и 2024.
             </p>
             
-            <div className="flex flex-wrap gap-5 pt-4">
-              <Button size="lg" className="rounded-lg bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white shadow-[0_0_20px_rgba(8,125,149,0.4)] border-none h-14 px-8 text-lg">
-                Получить консультацию
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-[#066a7e] text-white h-14 px-8 text-lg shadow-xl shadow-primary/20">
+                Стать первопроходцами
               </Button>
-              <Button variant="ghost" size="lg" className="rounded-lg text-gray-300 hover:text-white hover:bg-white/5 h-14 px-8 text-lg group">
-                О технологии <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <Button variant="outline" size="lg" className="rounded-full border-2 border-gray-200 hover:border-primary hover:text-primary h-14 px-8 text-lg bg-white/50 backdrop-blur-sm">
+                Подробнее о технологии
               </Button>
             </div>
           </motion.div>
 
-          <div className="relative perspective-1000">
-            <motion.div
-              style={{ y: yDevice, rotateY: rotateDevice }}
-              initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
-              animate={{ opacity: 1, scale: 1, rotateY: -5 }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="relative z-10"
-            >
-              {/* Glowing Ring behind device */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-full blur-3xl transform scale-90" />
-              
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative z-10"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl transform scale-90" />
               <img
                 src={heroImage}
-                alt="MCT Medical Device"
-                className="relative w-full h-auto drop-shadow-[0_0_50px_rgba(8,125,149,0.3)]"
+                alt="MCT Unit Apparatus"
+                className="relative w-full h-auto drop-shadow-2xl transform hover:scale-105 transition-transform duration-700"
               />
               
-              {/* Floating Technical UI Elements */}
+              {/* Floating Badge */}
               <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-[20%] -left-10 bg-black/60 backdrop-blur-md border border-accent/30 p-4 rounded-lg shadow-2xl hidden lg:block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-primary max-w-[260px] hidden md:block"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                  <span className="text-xs text-accent font-mono uppercase">Exosome Boost</span>
-                </div>
-                <div className="text-2xl font-mono text-white font-bold">13x</div>
-                <div className="text-xs text-gray-500">Регенеративный потенциал</div>
+                <div className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-1">Эксклюзивность</div>
+                <div className="text-xs text-gray-500">Технология доступна только для сертифицированных партнеров</div>
               </motion.div>
-
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                className="absolute bottom-[20%] -right-10 bg-black/60 backdrop-blur-md border border-primary/30 p-4 rounded-lg shadow-2xl hidden lg:block"
-              >
-                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-xs text-green-500 font-mono uppercase">Temp Control</span>
-                </div>
-                <div className="text-2xl font-mono text-white font-bold">4°C - 42°C</div>
-                <div className="text-xs text-gray-500">Диапазон температур</div>
-              </motion.div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
