@@ -26,9 +26,11 @@ export default function Support() {
   ];
 
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-16 text-center">
+    <section className="py-24 bg-primary text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-pattern-waves opacity-20" />
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-16 text-center">
           Всё для быстрого старта
         </h2>
 
@@ -40,13 +42,13 @@ export default function Support() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center p-6 rounded-2xl hover:bg-white/10 transition-colors border border-transparent hover:border-white/20"
             >
-              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 text-primary">
-                <item.icon className="h-8 w-8" />
+              <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                <item.icon className="h-10 w-10 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600">{item.desc}</p>
+              <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+              <p className="text-blue-100">{item.desc}</p>
             </motion.div>
           ))}
         </div>
