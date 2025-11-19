@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { CheckCircle2, Zap, Shield, Award } from "lucide-react";
 
 const specs = [
@@ -12,90 +11,74 @@ const specs = [
 ];
 
 const benefits = [
-  { text: "Ускорение реабилитации в 2 раза", icon: Zap },
-  { text: "Безболезненность процедур", icon: Shield },
-  { text: "Совместимость с любыми пробирками", icon: CheckCircle2 },
-  { text: "Простой и интуитивный интерфейс", icon: Award },
-  { text: "Компактный дизайн для любой клиники", icon: CheckCircle2 },
-  { text: "Отсутствие расходных материалов", icon: CheckCircle2 },
+  "Ускорение реабилитации в 2 раза",
+  "Безболезненность процедур",
+  "Совместимость с любыми пробирками",
+  "Простой и интуитивный интерфейс",
+  "Компактный дизайн",
+  "Отсутствие расходных материалов",
 ];
 
 export default function TechSpecs() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  
-  const xLeft = useTransform(scrollYProgress, [0, 1], [-100, 0]);
-  
   return (
-    <section ref={ref} id="specs" className="py-32 bg-secondary text-secondary-foreground relative overflow-hidden rounded-t-[4rem] -mt-12 shadow-inner-lg">
-      {/* Background Texture */}
-      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
-      
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+    <section id="specs" className="py-24 bg-white relative">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-10"
+            className="space-y-8"
           >
             <div className="space-y-4">
-              <h2 className="text-5xl font-heading font-bold text-white">
-                Технические <br /> <span className="text-primary-foreground/60">характеристики</span>
+              <h2 className="text-4xl font-heading font-bold text-black">
+                Технические <br />характеристики
               </h2>
-              <p className="text-lg text-white/60 max-w-md">
-                Максимальная эффективность в компактном корпусе. Разработано инженерами для врачей.
-              </p>
+              <div className="w-20 h-1 bg-primary" />
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden">
+            <div className="divide-y divide-gray-100 border-t border-b border-gray-100">
               {specs.map((spec, index) => (
                 <motion.div 
                   key={index} 
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`flex justify-between p-6 hover:bg-white/5 transition-colors ${
-                    index !== specs.length - 1 ? "border-b border-white/10" : ""
-                  }`}
+                  transition={{ delay: index * 0.05 }}
+                  className="flex justify-between py-4 hover:bg-gray-50 transition-colors px-2"
                 >
-                  <span className="font-medium text-white/70">{spec.label}</span>
-                  <span className="font-bold text-white">{spec.value}</span>
+                  <span className="font-medium text-gray-500">{spec.label}</span>
+                  <span className="font-bold text-primary">{spec.value}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-10"
+            className="bg-[#087D95] text-white p-10 md:p-12 relative overflow-hidden shadow-2xl"
           >
-            <h2 className="text-4xl font-heading font-bold text-white">
-              Преимущества системы
-            </h2>
-            <div className="grid gap-4">
+            {/* Background Gradient Decoration */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4dbdc6] rounded-full blur-3xl opacity-50" />
+            
+            <h3 className="text-3xl font-heading font-bold mb-8 relative z-10">Преимущества</h3>
+            
+            <div className="grid gap-6 relative z-10">
               {benefits.map((benefit, index) => (
                 <motion.div 
                   key={index}
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, type: "spring", stiffness: 50 }}
+                  transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.1)" }}
-                  className="flex items-center gap-6 bg-white/5 p-6 rounded-3xl border border-white/5 transition-all duration-300 cursor-default"
+                  className="flex items-center gap-4"
                 >
-                  <div className="h-12 w-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary-foreground shrink-0 shadow-lg shadow-primary/5">
-                    <benefit.icon className="h-6 w-6" />
+                  <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="h-5 w-5 text-white" />
                   </div>
-                  <span className="text-xl font-medium text-white/90">{benefit.text}</span>
+                  <span className="text-lg font-medium text-white/90">{benefit}</span>
                 </motion.div>
               ))}
             </div>

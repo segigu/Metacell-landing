@@ -37,62 +37,71 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-32 bg-white relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/30 to-white pointer-events-none" />
+    <section id="contact" className="py-24 bg-[#087D95] relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
+           style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }} 
+      />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16 space-y-6"
+            className="text-white space-y-6"
           >
-            <h2 className="text-5xl font-heading font-bold text-foreground tracking-tight">Свяжитесь с нами</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
-              Оставьте заявку, и наши специалисты проконсультируют вас по всем вопросам
-              приобретения и использования системы MCT.
+            <h2 className="text-4xl md:text-5xl font-heading font-bold">
+              Ваш новый шаг <br />в регенерации
+            </h2>
+            <p className="text-xl text-white/80 font-light max-w-md">
+              Оставьте заявку на консультацию или демонстрацию оборудования.
             </p>
+            
+            <div className="space-y-4 mt-8 border-t border-white/20 pt-8">
+              <div>
+                <div className="text-sm text-white/60 uppercase tracking-wider mb-1">Телефон</div>
+                <div className="text-2xl font-bold">+7 (800) 000-00-00</div>
+              </div>
+              <div>
+                <div className="text-sm text-white/60 uppercase tracking-wider mb-1">Email</div>
+                <div className="text-xl font-bold">info@mct-system.ru</div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-            className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl border border-gray-100 relative overflow-hidden"
+            className="bg-white p-8 md:p-10 shadow-2xl"
           >
-            {/* Decorative blobs inside card */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl" />
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-100/50 rounded-full blur-3xl" />
-
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 relative z-10">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base pl-2">Ваше имя</FormLabel>
+                      <FormLabel className="text-gray-700 font-bold">Ваше имя</FormLabel>
                       <FormControl>
-                        <Input placeholder="Иван Петров" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
+                        <Input placeholder="Иван Петров" className="bg-gray-50 h-12 border-gray-200 rounded-none focus:border-primary focus:ring-0" {...field} />
                       </FormControl>
-                      <FormMessage className="pl-2" />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base pl-2">Email</FormLabel>
+                        <FormLabel className="text-gray-700 font-bold">Email</FormLabel>
                         <FormControl>
-                          <Input placeholder="ivan@example.com" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
+                          <Input placeholder="ivan@example.com" className="bg-gray-50 h-12 border-gray-200 rounded-none focus:border-primary focus:ring-0" {...field} />
                         </FormControl>
-                        <FormMessage className="pl-2" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -101,11 +110,11 @@ export default function Contact() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-base pl-2">Телефон</FormLabel>
+                        <FormLabel className="text-gray-700 font-bold">Телефон</FormLabel>
                         <FormControl>
-                          <Input placeholder="+7 (999) 000-00-00" className="bg-gray-50/50 h-14 rounded-2xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all text-lg px-6" {...field} />
+                          <Input placeholder="+7 (999) 000-00-00" className="bg-gray-50 h-12 border-gray-200 rounded-none focus:border-primary focus:ring-0" {...field} />
                         </FormControl>
-                        <FormMessage className="pl-2" />
+                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -115,19 +124,17 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-base pl-2">Сообщение (необязательно)</FormLabel>
+                      <FormLabel className="text-gray-700 font-bold">Сообщение</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Меня интересует стоимость..." className="bg-gray-50/50 min-h-[150px] rounded-3xl border-gray-200 focus:border-primary/50 focus:bg-white transition-all resize-none text-lg p-6" {...field} />
+                        <Textarea placeholder="Меня интересует..." className="bg-gray-50 min-h-[120px] border-gray-200 rounded-none focus:border-primary focus:ring-0 resize-none" {...field} />
                       </FormControl>
-                      <FormMessage className="pl-2" />
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button type="submit" size="lg" className="w-full rounded-full h-16 text-xl font-semibold shadow-lg shadow-primary/20">
-                    Отправить заявку
-                  </Button>
-                </motion.div>
+                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold rounded-none bg-[#087D95] hover:bg-[#066a7e]">
+                  Отправить заявку
+                </Button>
               </form>
             </Form>
           </motion.div>

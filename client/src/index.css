@@ -32,7 +32,7 @@
   --color-chart-5: hsl(var(--chart-5));
   
   --font-sans: "Open Sans", sans-serif;
-  --font-heading: "Montserrat", sans-serif;
+  --font-heading: "Raleway", sans-serif; /* Using Raleway as substitute for Cygre */
   
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -43,75 +43,74 @@
 }
 
 :root {
-  /* Refined Palette for more depth and contrast */
-  /* Background is now a very subtle cool gray, not pure white */
-  --background: 210 40% 98%; 
-  --foreground: 215 28% 17%;
+  /* Brand Colors from Manual:
+     Main Brand Color (Primary): #087D95 (Teal-ish) -> 189 90% 31%
+     Secondary Gradient Color (Accent): #4dbdc6 -> 184 50% 54%
+     Light Texture (Background): #ebebeb -> 0 0% 92%
+     Light Blue Texture: #bde2ee -> 195 56% 84%
+     Black: #000000
+     White: #FFFFFF
+  */
+
+  --background: 0 0% 100%;
+  --foreground: 189 90% 15%; /* Darker version of primary for text */
 
   --card: 0 0% 100%;
-  --card-foreground: 215 28% 17%;
+  --card-foreground: 189 90% 15%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 215 28% 17%;
+  --popover-foreground: 189 90% 15%;
 
-  --primary: 221 83% 53%;
+  --primary: 189 90% 31%; /* #087D95 */
   --primary-foreground: 0 0% 100%;
 
-  /* Darker secondary for more contrast when used as background */
-  --secondary: 215 25% 27%; 
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 195 56% 94%; /* Lighter version of #bde2ee */
+  --secondary-foreground: 189 90% 31%;
 
-  --muted: 210 20% 90%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 189 20% 50%;
 
-  --accent: 199 89% 48%;
+  --accent: 184 50% 54%; /* #4dbdc6 */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221 83% 53%;
+  --border: 195 30% 90%;
+  --input: 195 30% 90%;
+  --ring: 189 90% 31%;
 
-  /* Increased radius for "less square" look */
-  --radius: 1.5rem; 
-
-  --chart-1: 12 76% 61%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  --radius: 0.5rem; /* Back to slightly more square as per manual examples */
 }
 
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: 189 50% 5%;
+  --foreground: 195 30% 95%;
 
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: 189 50% 5%;
+  --card-foreground: 195 30% 95%;
 
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 189 50% 5%;
+  --popover-foreground: 195 30% 95%;
 
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 47.4% 11.2%;
+  --primary: 189 90% 31%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 189 30% 15%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 189 30% 15%;
+  --muted-foreground: 195 20% 65%;
 
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 184 50% 54%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 48%;
+  --border: 189 30% 15%;
+  --input: 189 30% 15%;
+  --ring: 184 50% 54%;
 }
 
 @layer base {
@@ -129,13 +128,18 @@
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl;
+    @apply bg-white/90 backdrop-blur-md border border-white/50 shadow-lg;
   }
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#087D95] to-[#4dbdc6];
   }
-  /* Soft, organic shapes */
-  .shape-blob {
-    @apply absolute rounded-full blur-3xl opacity-30 mix-blend-multiply animate-pulse;
+  
+  /* Brand Gradients */
+  .bg-brand-gradient {
+    @apply bg-gradient-to-br from-[#087D95] to-[#4dbdc6];
+  }
+  
+  .bg-brand-light {
+    @apply bg-[#bde2ee]/20;
   }
 }
