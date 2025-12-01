@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ShieldCheck, Play } from "lucide-react";
-import heroImage from "@assets/generated_images/Hero_image_of_a_sleek_medical_device_2ddda277.png";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -55,9 +54,9 @@ export default function Hero() {
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" className="rounded-2xl bg-primary hover:bg-[#066a7e] text-white h-16 px-10 text-lg shadow-[0_10px_40px_-10px_rgba(8,125,149,0.5)] transition-all hover:-translate-y-1">
-                Стать первопроходцами
+                Получить консультацию
               </Button>
-              <Button variant="outline" size="lg" className="rounded-2xl border-2 border-white bg-white/50 hover:bg-white text-gray-700 h-16 px-8 text-lg backdrop-blur-sm shadow-sm">
+              <Button variant="outline" size="lg" className="rounded-2xl border-2 border-primary bg-transparent hover:bg-primary/10 text-primary h-16 px-8 text-lg transition-all">
                 <Play className="mr-2 h-5 w-5 fill-current" /> Видео о технологии
               </Button>
             </div>
@@ -68,20 +67,20 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, type: "spring" }}
-            className="relative z-10 perspective-1000"
+            className="relative z-10 flex items-center justify-center"
           >
-            <div className="relative">
-              {/* Dynamic Glowing Background behind Product */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl animate-pulse-slow" />
-              
+            <div className="relative max-h-[500px]">
               <img
-                src={heroImage}
+                src="/device.png"
                 alt="MCT Unit Apparatus"
-                className="relative w-full h-auto drop-shadow-2xl z-10 transform hover:scale-105 transition-transform duration-500"
+                className="relative max-h-[500px] w-auto object-contain z-10 transform hover:scale-105 transition-transform duration-500"
+                style={{
+                  filter: "drop-shadow(0 25px 50px rgba(8, 125, 149, 0.4))"
+                }}
               />
-              
+
               {/* Floating Glass Cards */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-0 right-0 glass-panel p-4 rounded-2xl max-w-[180px] hidden lg:block z-20"
@@ -90,7 +89,7 @@ export default function Hero() {
                 <div className="text-xs font-bold text-gray-600 uppercase">Активность экзосом</div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, 15, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute bottom-10 -left-10 glass-panel p-4 rounded-2xl max-w-[200px] hidden lg:block z-20 border-l-4 border-accent"

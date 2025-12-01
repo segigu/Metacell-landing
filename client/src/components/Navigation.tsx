@@ -30,14 +30,13 @@ export default function Navigation() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/20">
-            M
-          </div>
-          <span className="text-2xl font-heading font-bold text-primary tracking-tight">
-            MCT<span className="text-gray-800 font-light">Unit</span>
-          </span>
-        </div>
+        <a href="#" className="flex items-center flex-shrink-0">
+          <img
+            src="/logo.png"
+            alt="MCT - Meta Cell Technology"
+            className="h-10 object-contain"
+          />
+        </a>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8">
@@ -50,8 +49,13 @@ export default function Navigation() {
               {link.name}
             </a>
           ))}
+          <a href="https://portal.metacell.ru" target="_blank" rel="noopener noreferrer">
+            <Button variant="outline" className="rounded-full border-2 border-primary bg-transparent hover:bg-primary/10 text-primary px-6">
+              Портал поддержки
+            </Button>
+          </a>
           <Button className="rounded-full bg-primary hover:bg-[#066a7e] text-white shadow-lg shadow-primary/20 px-6">
-            Запросить КП
+            Связаться с нами
           </Button>
         </nav>
 
@@ -84,7 +88,12 @@ export default function Navigation() {
                   {link.name}
                 </a>
               ))}
-              <Button className="w-full bg-primary">Запросить КП</Button>
+              <a href="https://portal.metacell.ru" target="_blank" rel="noopener noreferrer" className="w-full">
+                <Button variant="outline" className="w-full border-2 border-primary bg-transparent text-primary">
+                  Портал поддержки
+                </Button>
+              </a>
+              <Button className="w-full bg-primary">Связаться с нами</Button>
             </nav>
           </motion.div>
         )}
