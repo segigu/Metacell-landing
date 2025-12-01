@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Atom } from "lucide-react";
+import { Atom, Zap, Heart } from "lucide-react";
 
 export default function Science() {
   return (
@@ -14,6 +14,40 @@ export default function Science() {
             Основано на прорывах науки
           </h2>
         </div>
+
+        {/* Key Benefits */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-6 mb-16"
+        >
+          <div className="bg-white/70 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-primary/20 flex gap-6 items-start group hover:shadow-xl transition-shadow">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <Zap className="w-8 h-8 text-primary" />
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">13×</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Активность экзосом</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Фототермическая обработка увеличивает выработку и высвобождение экзосом из тромбоцитов более чем в 13 раз
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white/70 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-accent/20 flex gap-6 items-start group hover:shadow-xl transition-shadow">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+              <Heart className="w-8 h-8 text-accent" />
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-accent mb-2">100%</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Биосовместимость</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Аутологичный материал — собственная кровь пациента, без риска отторжения и аллергических реакций
+              </p>
+            </div>
+          </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {[

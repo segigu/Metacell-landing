@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ShieldCheck, Play } from "lucide-react";
+import { ShieldCheck, Play } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -46,7 +46,7 @@ export default function Hero() {
                 Технология Экзосом
               </span>
             </h1>
-            
+
             <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
               Первая в России. Эксклюзивно для вашей клиники. 
               Основано на Нобелевских премиях 2013 и 2024.
@@ -69,35 +69,14 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.3, type: "spring" }}
             className="relative z-10 flex items-center justify-center"
           >
-            <div className="relative max-h-[500px]">
-              <img
-                src="/device.png"
-                alt="MCT Unit Apparatus"
-                className="relative max-h-[500px] w-auto object-contain z-10 transform hover:scale-105 transition-transform duration-500"
-                style={{
-                  filter: "drop-shadow(0 25px 50px rgba(8, 125, 149, 0.4))"
-                }}
-              />
-
-              {/* Floating Glass Cards */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-0 right-0 glass-panel p-4 rounded-2xl max-w-[180px] hidden lg:block z-20"
-              >
-                <div className="text-3xl font-bold text-primary">13x</div>
-                <div className="text-xs font-bold text-gray-600 uppercase">Активность экзосом</div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-10 -left-10 glass-panel p-4 rounded-2xl max-w-[200px] hidden lg:block z-20 border-l-4 border-accent"
-              >
-                <div className="text-sm font-bold text-gray-900">Аутологично</div>
-                <div className="text-xs text-gray-500">100% биосовместимость</div>
-              </motion.div>
-            </div>
+            <img
+              src="/device.png"
+              alt="MCT Unit Apparatus"
+              className="relative max-h-[500px] w-auto object-contain z-10 transform hover:scale-105 transition-transform duration-500"
+              style={{
+                filter: "drop-shadow(0 25px 50px rgba(8, 125, 149, 0.4))"
+              }}
+            />
           </motion.div>
         </div>
       </div>
